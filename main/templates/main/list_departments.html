@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Список отделов и языков программирования{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'add_department' %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Добавить
+                    отдел</a>
+
+
+                <table class="table table-striped align-middle">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Название отдела</th>
+                        <th scope="col">Этаж</th>
+                        <th scope="col">Кол-во сотрудников</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for department in departments %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ department.name }}</td>
+                            <td>{{ department.floor }}</td>
+                            <td>{{ department.worker }}</td>
+                        </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+
+ <a href="{% url 'add_language' %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Добавить
+                    язык</a>
+
+
+                <table class="table table-striped align-middle">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Название языка</th>
+                        <th scope="col">Кол-во сотрудников</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for language in languages %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ language.name }}</td>
+                            <td>{{ language.worker }}</td>
+                        </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

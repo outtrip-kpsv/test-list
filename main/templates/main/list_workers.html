@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Список сотрудников{% endblock %}
+
+{% block body %}
+
+    <a href="{% url 'add_worker' %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Добавить
+        сотрудника</a>
+
+
+    <table class="table table-striped align-middle">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Возраст</th>
+            <th scope="col">Отдел</th>
+            <th scope="col">Язык</th>
+            <th scope="col">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for worker in workers %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ worker.first_name }}</td>
+                <td>{{ worker.last_name }}</td>
+                <td>{{ worker.age }}</td>
+                <td>{{ worker.department }}</td>
+                <td>{{ worker.language }}</td>
+                <td>
+                    <a style="color: green; text-decoration: none;" href="{% url 'edit_worker' worker.pk %}">изменить</a><br>
+                    <a style="color: green; text-decoration: none;" href="{% url 'delete_worker' worker.pk %}">удалить</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+{% endblock %}
